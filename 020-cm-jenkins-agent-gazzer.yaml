@@ -1,0 +1,41 @@
+apiVersion: v1
+data:
+  jenkinsagentzap: |-
+    <org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
+      <inheritFrom></inheritFrom>
+      <name>jenkins-agent-zap</name>
+      <instanceCap>2147483647</instanceCap>
+      <idleMinutes>0</idleMinutes>
+      <label>jenkins-agent-zap</label>
+      <serviceAccount>jenkins</serviceAccount>
+      <nodeSelector></nodeSelector>
+      <volumes/>
+      <containers>
+        <org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate>
+          <name>jnlp</name>
+          <image>image-registry.openshift-image-registry.svc:5000/looker-resources-ci-cd/jenkins-agent-gazzer</image>
+          <privileged>false</privileged>
+          <alwaysPullImage>true</alwaysPullImage>
+          <workingDir>/tmp</workingDir>
+          <command></command>
+          <args>${computer.jnlpmac} ${computer.name}</args>
+          <ttyEnabled>false</ttyEnabled>
+          <resourceRequestCpu>1</resourceRequestCpu>
+          <resourceRequestMemory>512Mi</resourceRequestMemory>
+          <resourceLimitCpu>1</resourceLimitCpu>
+          <resourceLimitMemory>1Gi</resourceLimitMemory>
+          <envVars/>
+        </org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate>
+      </containers>
+      <envVars/>
+      <annotations/>
+      <imagePullSecrets/>
+      <nodeProperties/>
+    </org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
+kind: ConfigMap
+metadata:
+  annotations:
+  labels:
+    role: jenkins-slave
+  name: jenkins-agent-gazzer
+  namespace: looker-resources-ci-cd
