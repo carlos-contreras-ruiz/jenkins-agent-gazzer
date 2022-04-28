@@ -16,7 +16,9 @@ RUN yum -y clean all && \
 RUN wget https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz
 RUN tar xvfvz ruby-3.1.2.tar.gz
 WORKDIR /home/jenkins/ruby-3.1.2
-RUN pwd && ls | grep configure && ./configure
+RUN pwd
+RUN ls | grep configure
+RUN ./configure
 RUN make
 RUN make install
 
