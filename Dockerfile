@@ -8,22 +8,18 @@ RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.
 RUN yum -y clean all && \
     #yum -y --skip-broken update && \
     yum -y groupinstall "Development Tools" && \
-    yum -y install openssl-devel
+    yum -y install openssl-devel && \
+    yum -y install gcc
 
 # USER root
 # RUN apt-get -y update && apt-get -y install wget
 # RUN apt-get -y install build-essential
 RUN whoami
-WORKDIR /home
+WORKDIR /home/jenkins
 RUN wget https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz
 RUN ls
-RUN pwd
-#RUN chown -R $(whoami) /home/jenkins/ruby-3.1.2.tar.gz
 RUN tar xvfvz ruby-3.1.2.tar.gz
-WORKDIR /home/ruby-3.1.2
-RUN pwd
-RUN whoami
-RUN cat configure
+WORKDIR /home/jenkins/ruby-3.1.2
 RUN ./configure
 RUN make
 RUN make install
