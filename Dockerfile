@@ -1,10 +1,21 @@
 FROM omnitracs-base-remote-images-virt.jfrog.io/openshift4/ose-jenkins-agent-base:v4.5
 
+#Add repositories for instalattion
 RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-RUN yum -y clean all && yum -y --skip-broken update && yum -y install ruby
+
+#RUN yum -y clean all && yum -y --skip-broken update && yum -y install ruby
+
+RUN wget https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz
+RUN tar xvfvz ruby-3.1.2.tar.gz
+RUN cd ruby-3.1.2
+RUN ./configure
+RUN make
+RUN make install
 RUN ruby -v
 RUN gem install gazer
 RUN gzr version
+
+
 
 #FROM omnitracs.jfrog.io/artifactory/base-remote-images-virt/openshift4/ose-jenkins-agent-base:latest
 #FROM quay.io/openshift/origin-jenkins-agent-base:4.3.0
