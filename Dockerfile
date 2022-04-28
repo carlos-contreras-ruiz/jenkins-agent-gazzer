@@ -20,6 +20,7 @@ RUN ls
 RUN pwd
 #RUN chown -R $(whoami) /home/jenkins/ruby-3.1.2.tar.gz
 RUN tar xvfvz ruby-3.1.2.tar.gz
+WORKDIR /home/ruby-3.1.2
 RUN pwd
 RUN whoami
 RUN cat configure
