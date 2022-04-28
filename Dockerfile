@@ -5,8 +5,9 @@ FROM omnitracs-base-remote-images-virt.jfrog.io/openshift4/ose-jenkins-agent-bas
 RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 RUN yum -y clean all && \
-    yum -y --skip-broken update && \
-    yum -y install openssl
+    #yum -y --skip-broken update && \
+    yum -y groupinstall "Development Tools" && \
+    yum -y install openssl-devel
 
 # USER root
 # RUN apt-get -y update && apt-get -y install wget
