@@ -9,7 +9,8 @@ RUN yum -y clean all && \
     #yum -y --skip-broken update && \
     yum -y groupinstall "Development Tools" && \
     yum -y install openssl-devel && \
-    yum -y install gcc
+    yum -y install gcc && \
+    yum -y install make
 
 # USER root
 # RUN apt-get -y update && apt-get -y install wget
