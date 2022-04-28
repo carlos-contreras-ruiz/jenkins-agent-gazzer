@@ -14,15 +14,16 @@ RUN yum -y clean all && \
 # RUN apt-get -y update && apt-get -y install wget
 # RUN apt-get -y install build-essential
 RUN whoami
+WORKDIR /home
 RUN wget https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz
 RUN ls
-RUN chown -R $(whoami) /home/jenkins/ruby-3.1.2.tar.gz
+RUN pwd
+#RUN chown -R $(whoami) /home/jenkins/ruby-3.1.2.tar.gz
 RUN tar xvfvz ruby-3.1.2.tar.gz
-WORKDIR /home/jenkins/ruby-3.1.2
 RUN pwd
 RUN whoami
 RUN cat configure
-RUN /home/jenkins/ruby-3.1.2/configure
+RUN ./configure
 RUN make
 RUN make install
 
