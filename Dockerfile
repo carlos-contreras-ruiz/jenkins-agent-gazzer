@@ -1,7 +1,7 @@
 FROM omnitracs-base-remote-images-virt.jfrog.io/openshift4/ose-jenkins-agent-base:v4.5
 
 RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-RUN yum -y clean all && yum --skip-broken update && yum -y install ruby
+RUN yum -y clean all && yum -y --skip-broken update && yum -y install ruby
 RUN ruby -v
 RUN gem install gazer
 RUN gzr version
