@@ -18,7 +18,8 @@ RUN wget https://cache.ruby-lang.org/pub/ruby/3.1/ruby-3.1.2.tar.gz
 RUN tar xvfvz ruby-3.1.2.tar.gz
 WORKDIR /home/jenkins/ruby-3.1.2
 RUN pwd
-RUN ./configure
+RUN ls
+RUN /home/jenkins/ruby-3.1.2/configure
 RUN make
 RUN make install
 
