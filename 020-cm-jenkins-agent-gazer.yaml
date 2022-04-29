@@ -1,4 +1,11 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  annotations:
+  labels:
+    role: jenkins-slave
+  name: jenkins-agent-gazer
+  namespace: looker-resources-ci-cd
 data:
   jenkinsagentzap: |-
     <org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
@@ -13,7 +20,7 @@ data:
       <containers>
         <org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate>
           <name>jnlp</name>
-          <image>image-registry.openshift-image-registry.svc:5000/looker-resources-ci-cd/jenkins-agent-gazzer</image>
+          <image>image-registry.openshift-image-registry.svc:5000/looker-resources-ci-cd/jenkins-agent-gazer</image>
           <privileged>false</privileged>
           <alwaysPullImage>true</alwaysPullImage>
           <workingDir>/tmp</workingDir>
@@ -32,10 +39,3 @@ data:
       <imagePullSecrets/>
       <nodeProperties/>
     </org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
-kind: ConfigMap
-metadata:
-  annotations:
-  labels:
-    role: jenkins-slave
-  name: jenkins-agent-gazzer
-  namespace: looker-resources-ci-cd
